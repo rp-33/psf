@@ -17,16 +17,17 @@ export const apiEditCountry = (country)=>{
 	.catch((err)=>{return err.response})
 }
 
-export const apiEditAvatar = (avatar)=>{
+export const apiEditAvatar = (uri)=>{
 	
 	let formData = new FormData();
-	formData.append('file',avatar);
+	let file = {uri:uri,name:uri,type:'image/jpg'};
+	formData.append('file',file);
 
     return axios({
 		method:'put',
-		url:`${server}/api/v1/user/edit/avatar`,
-		data: formData,
-		headers:{'content-type':'multipart/form-data','Authorization': "bearer " + userDb.get().token}
+		url : `${server}/api/v1/user/edit/avatar`,
+		data : formData,
+		headers:{'Content-Type':'multipart/form-data','Authorization': "bearer " + userDb.get().token}
 	})
 	.then((response)=>{return response})
 	.catch((err)=>{return err.response})

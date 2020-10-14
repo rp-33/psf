@@ -10,13 +10,8 @@ const styles = StyleSheet.create({
 		justifyContent:'center',
 		paddingHorizontal:25,
 		marginVertical:5,
-		shadowOffset: {
-			width: 0,
-			height: 1,
-		},
-		shadowOpacity: 0.5,
-		shadowRadius: 20,
-		elevation: 1.61,
+		borderWidth:1,
+		borderColor:'#c7c7c7',
 		borderRadius:15,
 		overflow:'hidden',
 		paddingVertical:10

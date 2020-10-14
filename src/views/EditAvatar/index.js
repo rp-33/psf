@@ -36,7 +36,7 @@ const EditAvatar = ({navigation})=>{
 
 			if(status === 201)
 			{
-				dispatch(actionSetAvatar(avatar))
+				dispatch(actionSetAvatar(data.avatar))
 				dispatch(actionSetToast({visible:true,title:data.message}))	
 				navigation.pop(1);
 			}
@@ -47,7 +47,6 @@ const EditAvatar = ({navigation})=>{
 		}
 		catch(err)
 		{
-			console.log(err)
 			dispatch(actionSetToast({visible:true,title:'Error en el servidor'}))	
 		}
 		finally
