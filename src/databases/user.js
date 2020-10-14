@@ -37,6 +37,13 @@ class userDb{
 		})
 	}
 
+	setPhone ({country_code,phone}){
+		Database.write(() => {
+			this.user.phone = parseInt(phone);
+			this.user.country_code = parseInt(country_code);
+		})
+	}
+
 
 
 }

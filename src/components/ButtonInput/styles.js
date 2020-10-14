@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
 		marginVertical : 10
 	},
     input : {
-        borderRadius : 8,
         height:50
     },
     ctnText:{

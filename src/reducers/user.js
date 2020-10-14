@@ -11,6 +11,8 @@ const initUser = {
 	country : null,
 	isAuthenticated : false,
 	notifications : true,
+    country_code : null,
+    phone : null
 }
 
 let initialState = userDb.get() || initUser;
@@ -25,6 +27,9 @@ export default (state = initialState, action) => {
             return userDb.get();
         case 'EDIT_AVATAR_USER':
             userDb.setAvatar(action.payload);
+            return userDb.get();
+        case 'EDIT_PHONE_USER':
+            userDb.setPhone(action.payload);
             return userDb.get();
         case 'LOGOUT_USER':
         	userDb.logout();

@@ -22,6 +22,7 @@ import WorkConfiguration from '../views/WorkConfiguration';
 import EditProfessionStepOne from '../views/EditProfession/EditOne';
 import EditProfessionStepTwo from '../views/EditProfession/EditTwo';
 import EditPassword from '../views/EditPassword';
+import EditPhone from '../views/EditPhone/';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -97,7 +98,6 @@ const EditProfessionScreen = () => {
     </Stack.Navigator>
   );
 }
-
 
 const CrowdfundingScreen = ()=>{
   return(
@@ -182,6 +182,10 @@ const ProfileScreen = ()=>{
       <Stack.Screen
         name="EditPassword"
         component={EditPassword}
+      />
+      <Stack.Screen
+        name="EditPhone"
+        component={EditPhone}
       />
     </Stack.Navigator>
   )

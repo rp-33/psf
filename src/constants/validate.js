@@ -70,3 +70,13 @@ export const passwordSchema = Yup.object().shape({
         .oneOf([Yup.ref('password'), null], 'Las claves deben coincidir')
         .required('Campo requerido'),
 });
+
+
+export const phoneSchema = Yup.object().shape({
+    phone : Yup.string()
+       .matches(
+            /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/, 
+            'Numero de telefono no valido'
+        )
+       .required('Este campo es obligatorio')
+});

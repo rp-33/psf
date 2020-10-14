@@ -37,6 +37,7 @@
     "react-native-screens": "^2.10.1",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "^12.1.0",
+    "react-native-svg-charts": "^5.4.0",
     "react-native-vector-icons": "^7.0.0",
     "react-navigation-redux-helpers": "^4.0.1",
     "react-redux": "^7.2.1",

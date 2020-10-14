@@ -17,3 +17,8 @@ export const actionSetAvatar = (payload)=>({
 	type : 'EDIT_AVATAR_USER',
 	payload
 })
+
+export const actionSetPhone = (payload)=>({
+	type : 'EDIT_PHONE_USER',
+	payload
+})

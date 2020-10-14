@@ -62,8 +62,8 @@ const MyProfile = ({navigation})=>{
 				<View style={styles.ctnButton}>
 					<ButtonCard 
 						image = "telefono-movil"
-						text = "Numero de telefono"
-						onPress = {()=>console.log('onPress')}
+						text = {(user.country_code && user.phone) ? `+${user.country_code}-${user.phone}` : 'Numero de telefono'}
+						onPress = {()=>handleNavigation('EditPhone')}
 					/>
 				</View>
 				<View style={styles.ctnButton}>

@@ -12,7 +12,8 @@ const UserModel = {
 		isAuthenticated : 'bool',
         age : 'int',
         country : 'string?',
-        phone : 'int?'
+        phone : 'int?',
+        country_code : 'int?'
     }
 };
 

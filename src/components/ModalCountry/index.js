@@ -11,9 +11,9 @@ import {
     Item,
     Input
 } from 'native-base';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/EvilIcons';
 import Modal from 'react-native-modal';
-import countries from '../utils/countries';
+import {countries} from '../../utils/countries';
 import PropTypes from 'prop-types';
 import styles from './styles';
 
@@ -53,7 +53,7 @@ const ModalCountry = ({open,handleModal,onPress})=>{
                                 transparent
                                 onPress = {()=>handleModal()}
                             >
-           	                    <Icon name="md-close" color="black" size={27} />
+           	                    <Icon name="close" color="black" size={27} />
         	                </Button>
                     </Item>
 	            </Header>
@@ -67,7 +67,7 @@ const ModalCountry = ({open,handleModal,onPress})=>{
                         <TouchableOpacity
                             key = {index}
                             style = {styles.item}
-                            onPress = {()=>handleSelect()}
+                            onPress = {()=>handleSelect(item)}
                         >
                             <Text> {item.name} </Text>
                         </TouchableOpacity>
