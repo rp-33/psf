@@ -13,8 +13,12 @@ export const apiCreateProject = (type,name,description,time,amount,images)=>{
 	formData.append('amount',amount);
 
 	images.forEach((uri,index) => {
-		formData.append('file',uri);
-	})
+		formData.append('file',{
+        	uri:uri,
+        	name:uri,
+        	type:'image/jpeg'
+		})
+	});
 
     return axios({
 		method:'post',
