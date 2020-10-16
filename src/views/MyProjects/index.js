@@ -31,7 +31,7 @@ const MyProjects = ({navigation})=>{
 		try
 		{
 			let {status,data} = await apiFindMyProjects(page);
-			if(status==200)
+			if(status===200)
 			{
 				if(data.length===0) return setNodata(true);
 				setProjects(data);

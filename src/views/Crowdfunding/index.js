@@ -4,17 +4,22 @@ import {
 	FlatList
 } from 'react-native';
 import {Container} from 'native-base';
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import Card from './Card';
 import ButtonCard from '../../components/ButtonCard';
 import Head from '../../components/Head';
 import styles from './styles';
-import {apiFindProjects} from '../../apis/crowdfunding';
+import {
+	apiFindProjects,
+	apiLike,
+	apiDislike
+} from '../../apis/crowdfunding';
 import {actionSetToast} from '../../actions/toast';
 import Loading from '../../components/LoadingMore';
 
 const Crowdfunding = ({navigation})=>{
 
+	const user = useSelector(state => state.user);
 	const dispatch = useDispatch();
 	const [projects,setProjects] = useState([]);
 	const [loading,setLoading] = useState(false);
@@ -55,6 +60,47 @@ const Crowdfunding = ({navigation})=>{
 		
 	}
 
+	const handleLike = async({_id})=>{
+		try
+		{
+			let {status,data} = await apiLike(_id);
+			if(status==201)
+			{
+				setProjects(projects.map(item=>(item._id==_id ? {...item,likes:item.likes.concat({user:user._id})} : item)))
+			}
+			else
+			{
+				dispatch(actionSetToast({visible:true,title:data.error}))	
+			}	
+		}
+		catch(err)
+		{
+			console.log(err)
+			dispatch(actionSetToast({visible:true,title:'Error en el servidor'}))	
+		}
+	}
+
+	const handleDislike = async({_id})=>{
+		try
+		{
+			let {status,data} = await apiDislike(_id);
+			if(status==201)
+			{
+				setProjects(projects.map(item=>(item._id==_id ? {...item,likes:item.likes.filter(like=>(like.user !=user._id))} : item)))
+			}
+			else
+			{
+				dispatch(actionSetToast({visible:true,title:data.error}))	
+			}
+		}
+		catch(err)
+		{
+			console.log(err)
+			dispatch(actionSetToast({visible:true,title:'Error en el servidor'}))	
+		}
+	}
+
+
 	return(
 		<Container>
 			<Head />
@@ -81,7 +127,10 @@ const Crowdfunding = ({navigation})=>{
                     <Card 
                     	key = {item._id}
                     	item = {item}
-                    	handleNavigation = {()=>navigation.push('InformationProject',item)}
+                    	handleNavigation = {(root,params)=>navigation.push(root,params)}
+                    	handleLike = {handleLike}
+                    	handleDislike = {handleDislike}
+                    	user = {user._id}
                     />
                 )}
             />

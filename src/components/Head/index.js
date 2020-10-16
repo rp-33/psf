@@ -11,7 +11,7 @@ import {
     Body,
     Button
 } from 'native-base';
-import Icon from 'react-native-vector-icons/EvilIcons'
+import Icon from 'react-native-vector-icons/EvilIcons';
 import {color} from '../../theme';
 import PropTypes from 'prop-types';
 

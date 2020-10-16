@@ -23,6 +23,7 @@ import EditProfessionStepOne from '../views/EditProfession/EditOne';
 import EditProfessionStepTwo from '../views/EditProfession/EditTwo';
 import EditPassword from '../views/EditPassword';
 import EditPhone from '../views/EditPhone/';
+import Comments from '../views/Comments';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -123,6 +124,10 @@ const CrowdfundingScreen = ()=>{
       <Stack.Screen
         name="InformationProject"
         component={InformationProject}
+      />
+      <Stack.Screen
+        name="Comments"
+        component={Comments}
       />
     </Stack.Navigator>
   )

@@ -51,3 +51,58 @@ export const apiFindProjects = (page)=>{
 	.then((response)=>{return response})
 	.catch((err)=>{return err.response})
 }
+
+export const apiFindComments = (_id,page)=>{
+	return axios({
+		method:'get',
+		params : {
+			_id
+		},
+		url:`${server}/api/v1/project/findComments/${page}`,
+		headers:{'Authorization': "bearer " + userDb.get().token}
+	})
+	.then((response)=>{return response})
+	.catch((err)=>{return err.response})
+}
+
+export const apiCreateComment = (_id,text)=>{
+	return axios({
+		method:'put',
+		url:`${server}/api/v1/project/createComment`,
+		data : {
+			_id,
+			text
+		},
+		headers:{'Authorization': "bearer " + userDb.get().token}
+	})
+	.then((response)=>{return response})
+	.catch((err)=>{return err.response})
+}
+
+export const apiLike = (_id)=>{
+	return axios({
+		method:'put',
+		url:`${server}/api/v1/project/like`,
+		data : {
+			_id
+		},
+		headers:{'Authorization': "bearer " + userDb.get().token}
+	})
+	.then((response)=>{return response})
+	.catch((err)=>{return err.response})
+}
+
+export const apiDislike = (_id)=>{
+	return axios({
+		method:'put',
+		url:`${server}/api/v1/project/disLike`,
+		data : {
+			_id
+		},
+		headers:{'Authorization': "bearer " + userDb.get().token}
+	})
+	.then((response)=>{return response})
+	.catch((err)=>{return err.response})
+}
+
+

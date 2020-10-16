@@ -13,7 +13,11 @@ import {dateFormat} from '../../../utils/date';
 import SliderImages from '../../../components/SliderImages';
 import Avatar from '../../../components/Avatar';
 
-const Card = ({item,handleNavigation})=>{
+const Card = ({user,item,handleNavigation,handleLike,handleDislike})=>{
+
+	console.log(item.likes)
+
+	const like = (item.likes || []).findIndex(item=>(item.user === user));
 
 	return(
 		<View style = {styles.card}>
@@ -38,7 +42,7 @@ const Card = ({item,handleNavigation})=>{
 				<Text style={styles.title}>{item.name}</Text>
 				<View>
 					<Text>{item.description}</Text>
-					<TouchableOpacity onPress = {()=>handleNavigation()}>
+					<TouchableOpacity onPress = {()=>handleNavigation('InformationProject',item)}>
 						<Text style={{color:color.primary,fontWeight:'bold'}}>Ver mas...</Text>
 					</TouchableOpacity>
 				</View>
@@ -52,7 +56,10 @@ const Card = ({item,handleNavigation})=>{
             		/>
 					<Text>{item.total_donations/item.amount}%</Text>
 				</TouchableOpacity>
-				<TouchableOpacity style={[styles.childBottom,styles.like]}>
+				<TouchableOpacity 
+					onPress = {()=>handleNavigation('Comments',item._id)}
+					style={[styles.childBottom,styles.like]}
+				>
 					<Icon 
                 		name="comment" 
                 		size={27} color="black"
@@ -60,10 +67,14 @@ const Card = ({item,handleNavigation})=>{
             		/>
 					<Text>{item.comments.length}</Text>
 				</TouchableOpacity>
-				<TouchableOpacity style={[styles.childBottom,styles.comment]}>
+				<TouchableOpacity 
+					style={[styles.childBottom,styles.comment]}
+					onPress = {()=>(like!=-1) ? handleDislike(item) : handleLike(item)}
+				>
 					<Icon 
                 		name="heart" 
-                		size={27} color="black"
+                		size={27} 
+                		color={(like!=-1) ? 'red' : 'black'}
                 		style={{marginRight:5}}
             		/>
 					<Text>{item.likes.length}</Text>
