@@ -80,3 +80,11 @@ export const phoneSchema = Yup.object().shape({
         )
        .required('Este campo es obligatorio')
 });
+
+export const contributeSchema = Yup.object().shape({
+    amount :  Yup.number()
+        .required('Campo requerido')
+        .positive()
+        .integer()
+
+});

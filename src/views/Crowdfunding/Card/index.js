@@ -15,8 +15,6 @@ import Avatar from '../../../components/Avatar';
 
 const Card = ({user,item,handleNavigation,handleLike,handleDislike})=>{
 
-	console.log(item.likes)
-
 	const like = (item.likes || []).findIndex(item=>(item.user === user));
 
 	return(
@@ -54,7 +52,7 @@ const Card = ({user,item,handleNavigation,handleLike,handleDislike})=>{
                 		size={27} color="black"
                 		style={{marginRight:5}}
             		/>
-					<Text>{item.total_donations/item.amount}%</Text>
+					<Text>{(item.total_donations/item.amount)*100}%</Text>
 				</TouchableOpacity>
 				<TouchableOpacity 
 					onPress = {()=>handleNavigation('Comments',item._id)}
@@ -83,7 +81,7 @@ const Card = ({user,item,handleNavigation,handleLike,handleDislike})=>{
 			<View style={styles.button}>
 				<Button 
 					title="Contribuir"
-					onPress= {()=>console.log('Contribuir')}
+					onPress= {()=>handleNavigation('Contribute',item._id)}
 				/>
 			</View>
 		</View>

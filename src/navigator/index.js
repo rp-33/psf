@@ -24,6 +24,8 @@ import EditProfessionStepTwo from '../views/EditProfession/EditTwo';
 import EditPassword from '../views/EditPassword';
 import EditPhone from '../views/EditPhone/';
 import Comments from '../views/Comments';
+import Contribute from '../views/Contribute';
+import ThankMessage from '../views/ThankMessage';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -128,6 +130,14 @@ const CrowdfundingScreen = ()=>{
       <Stack.Screen
         name="Comments"
         component={Comments}
+      />
+      <Stack.Screen
+        name="Contribute"
+        component={Contribute}
+      />
+      <Stack.Screen
+        name="ThankMessage"
+        component={ThankMessage}
       />
     </Stack.Navigator>
   )

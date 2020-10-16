@@ -63,19 +63,15 @@ const Crowdfunding = ({navigation})=>{
 	const handleLike = async({_id})=>{
 		try
 		{
+			setProjects(projects.map(item=>(item._id==_id ? {...item,likes:item.likes.concat({user:user._id})} : item)))
 			let {status,data} = await apiLike(_id);
-			if(status==201)
+			if(status!=201)
 			{
-				setProjects(projects.map(item=>(item._id==_id ? {...item,likes:item.likes.concat({user:user._id})} : item)))
+				dispatch(actionSetToast({visible:true,title:data.error || 'Error'}))		
 			}
-			else
-			{
-				dispatch(actionSetToast({visible:true,title:data.error}))	
-			}	
 		}
 		catch(err)
 		{
-			console.log(err)
 			dispatch(actionSetToast({visible:true,title:'Error en el servidor'}))	
 		}
 	}
@@ -83,19 +79,15 @@ const Crowdfunding = ({navigation})=>{
 	const handleDislike = async({_id})=>{
 		try
 		{
+			setProjects(projects.map(item=>(item._id==_id ? {...item,likes:item.likes.filter(like=>(like.user !=user._id))} : item)));
 			let {status,data} = await apiDislike(_id);
-			if(status==201)
+			if(status!=201)
 			{
-				setProjects(projects.map(item=>(item._id==_id ? {...item,likes:item.likes.filter(like=>(like.user !=user._id))} : item)))
-			}
-			else
-			{
-				dispatch(actionSetToast({visible:true,title:data.error}))	
+				dispatch(actionSetToast({visible:true,title:data.error || 'Error'}))	
 			}
 		}
 		catch(err)
 		{
-			console.log(err)
 			dispatch(actionSetToast({visible:true,title:'Error en el servidor'}))	
 		}
 	}

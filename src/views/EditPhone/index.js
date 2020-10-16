@@ -49,7 +49,6 @@ const EditPhone = ({navigation})=>{
 		}
 		catch(err)
 		{
-			console.log(err)
 			dispatch(actionSetToast({visible:true,title:'Error en el servidor'}))	
 		}
 		finally

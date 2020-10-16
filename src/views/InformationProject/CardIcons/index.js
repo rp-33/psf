@@ -17,7 +17,7 @@ const CardIcons  = ({amount,comments,likes,donations})=>{
                		color="black"
                		style={styles.icon}
             	/>
-				<Text>{donations/amount}%</Text>
+				<Text>{donations/amount*100}%</Text>
 			</TouchableOpacity>
 			<TouchableOpacity style={[styles.childBottom,styles.like]}>
 				<Icon 

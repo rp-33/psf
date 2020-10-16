@@ -105,4 +105,20 @@ export const apiDislike = (_id)=>{
 	.catch((err)=>{return err.response})
 }
 
+export const apiContribute = (_id,tokenStripe,amount)=>{
+	return axios({
+		method:'put',
+		url:`${server}/api/v1/project/contribute`,
+		data : {
+			_id,
+			tokenStripe,
+			amount
+		},
+		headers:{'Authorization': "bearer " + userDb.get().token}
+	})
+	.then((response)=>{return response})
+	.catch((err)=>{return err.response})
+}
+
+
 
