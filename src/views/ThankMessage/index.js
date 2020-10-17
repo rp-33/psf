@@ -15,10 +15,10 @@ const ThankMessage = ({navigation})=>{
 			<Head />
 			<View style={styles.ctn}>
 				<View style={styles.ctnText}>
-					<Text style={styles.text}>Gracias por tu ayuda...</Text>
+					<Text style={styles.text}>Gracias por tu aporte...</Text>
 				</View>
 				<Image 
-					source ={require('../../assets/images/ayudar.png')} 
+					source ={require('../../assets/images/congratulation.png')} 
 					style = {styles.img}
 				/> 
 			</View>
