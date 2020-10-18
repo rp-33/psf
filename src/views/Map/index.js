@@ -37,10 +37,40 @@ const Map = ({navigation})=>{
                             }}
                         />
                         <Marker
-                            image={require('../../assets/images/pin-work.png')}
+                            image={require('../../assets/images/point-trabajo.png')}
+                            coordinate={{
+                                latitude: 10.316641,
+                                longitude: -68.8851475,
+                                latitudeDelta: 0.0922,
+                                longitudeDelta: 0.0421,
+                            }}
+                            title="Solitan empleado"
+                        />
+                        <Marker
+                            image={require('../../assets/images/point-comercio.png')}
+                            coordinate={{
+                                latitude: 10.386641,
+                                longitude: -68.8921475,
+                                latitudeDelta: 0.0922,
+                                longitudeDelta: 0.0421,
+                            }}
+                            title="Solitan empleado"
+                        />
+                        <Marker
+                            image={require('../../assets/images/point-casa.png')}
                             coordinate={{
                                 latitude: 10.356641,
-                                longitude: -68.8221475,
+                                longitude: -68.8121475,
+                                latitudeDelta: 0.0922,
+                                longitudeDelta: 0.0421,
+                            }}
+                            title="Solitan empleado"
+                        />
+                        <Marker
+                            image={require('../../assets/images/point-evento.png')}
+                            coordinate={{
+                                latitude: 10.456641,
+                                longitude: -68.9321475,
                                 latitudeDelta: 0.0922,
                                 longitudeDelta: 0.0421,
                             }}

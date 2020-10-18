@@ -25,7 +25,6 @@ const Contribute = ({item})=>{
             	/>
             	<View style={styles.ctnInf}>
             		<Text style={[styles.text,styles.name]}>{item.user.userName}</Text>
-            		<Text style={styles.text}>${item.amount}</Text>
             	</View>
             </LinearGradient>
         </TouchableNativeFeedback>
