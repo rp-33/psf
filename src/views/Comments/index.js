@@ -19,7 +19,6 @@ const Comments =({navigation,route})=>{
 	const [loading,setLoading] = useState(true);
 	const [nodata,setNodata] = useState(false);
 
-
 	useEffect(()=>{
 		findComments(id,comments.length);
 	},[])
@@ -31,7 +30,7 @@ const Comments =({navigation,route})=>{
 			if(status===200)
 			{
 				if(data.length===0) return setNodata(true);
-				setComments(data);
+				setComments([...comments,...data]);
 			}
 			else
 			{

@@ -20,7 +20,7 @@ const MyProjects = ({navigation})=>{
 
 	const dispatch = useDispatch();
 	const [projects,setProjects] = useState([]);
-	const [loading,setLoading] = useState(true);
+	const [loading,setLoading] = useState(false);
 	const [nodata,setNodata] = useState(false);
 
 	useEffect(()=>{
@@ -30,11 +30,12 @@ const MyProjects = ({navigation})=>{
 	const _findProjects = async(page)=>{
 		try
 		{
+			setLoading(true)
 			let {status,data} = await apiFindMyProjects(page);
 			if(status===200)
 			{
 				if(data.length===0) return setNodata(true);
-				setProjects(data);
+				setProjects([...projects,...data]);
 			}
 			else
 			{
@@ -87,7 +88,7 @@ const MyProjects = ({navigation})=>{
                    	<Project
                    		key = {item._id}
                    		item = {item}
-                   		handleNavigation = {()=>console.log('Staticts')}
+                   		handleNavigation = {(_id,name,total_donations,amount)=>navigation.push('Staticts',{_id,name,total_donations,amount})}
                    	/>
                	)}
             />

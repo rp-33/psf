@@ -13,7 +13,7 @@ import styles from './styles';
 const Project = ({handleNavigation,item})=>{
 	return(
 	<TouchableNativeFeedback 
-		onPress = {()=>handleNavigation()}
+		onPress = {()=>handleNavigation(item._id,item.name,item.total_donations,item.amount)}
 	>
 		<View style={styles.ctn}>
 			<View style={styles.ctnImage}>

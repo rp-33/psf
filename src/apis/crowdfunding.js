@@ -120,5 +120,16 @@ export const apiContribute = (_id,tokenStripe,amount)=>{
 	.catch((err)=>{return err.response})
 }
 
-
+export const apiFindContributors = (_id,page)=>{
+	return axios({
+		method:'get',
+		params : {
+			_id
+		},
+		url:`${server}/api/v1/project/findContributors/${page}`,
+		headers:{'Authorization': "bearer " + userDb.get().token}
+	})
+	.then((response)=>{return response})
+	.catch((err)=>{return err.response})
+}
 

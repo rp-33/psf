@@ -37,7 +37,7 @@ const Crowdfunding = ({navigation})=>{
 			if(status==200)
 			{
 				if(data.length===0) return setNodata(true);
-				setProjects(data);
+				setProjects([...projects,...data]);
 			}
 			else
 			{

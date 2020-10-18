@@ -26,6 +26,7 @@ import EditPhone from '../views/EditPhone/';
 import Comments from '../views/Comments';
 import Contribute from '../views/Contribute';
 import ThankMessage from '../views/ThankMessage';
+import Staticts from '../views/Staticts';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -138,6 +139,10 @@ const CrowdfundingScreen = ()=>{
       <Stack.Screen
         name="ThankMessage"
         component={ThankMessage}
+      />
+      <Stack.Screen
+        name="Staticts"
+        component={Staticts}
       />
     </Stack.Navigator>
   )
