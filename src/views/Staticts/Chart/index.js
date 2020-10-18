@@ -24,4 +24,8 @@ const Chart = ({percentaje})=>{
 	)
 }
 
+Chart.propTypes = {
+	percentaje : PropTypes.number.isRequired
+}
+
 export default Chart;
