@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/EvilIcons';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
-const CardIcons  = ({amount,comments,donations,handleShare})=>{
+const CardIcons  = ({amount,comments,donations,handleShare,handleNavigation})=>{
 	return(
 		<View style={styles.ctn}>
 			<TouchableOpacity 
@@ -24,7 +24,7 @@ const CardIcons  = ({amount,comments,donations,handleShare})=>{
 			</TouchableOpacity>
 			<TouchableOpacity 
 				style={styles.ctnIcon}
-				handleNavigation = {()=>handleNavigation()}
+				onPress = {()=>handleNavigation()}
 			>
 				<Icon 
                		name="comment" 

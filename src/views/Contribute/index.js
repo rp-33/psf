@@ -26,7 +26,7 @@ stripe.setOptions({
 
 const Contribute = ({navigation,route})=>{
 
-	const id = route.params;
+	const {_id,user_id} = route.params;
 	const dispatch = useDispatch();
 
 	const handleSubmit = async(values, actions)=>{
@@ -36,7 +36,7 @@ const Contribute = ({navigation,route})=>{
             if(tokenId)
             {
             	let {amount} = values;
-                handlePayment(tokenId,amount,id)
+                handlePayment(tokenId,amount,_id,user_id)
             } 
             else
             {
@@ -49,11 +49,11 @@ const Contribute = ({navigation,route})=>{
 		}
 	}
 
-	const handlePayment = async(tokenId,amount,id)=>{
+	const handlePayment = async(tokenId,amount,_id,user_id)=>{
 		try
 		{
 			dispatch(actionSetLoading(true));
-			let { status, data } = await apiContribute(id,tokenId,amount);
+			let { status, data } = await apiContribute(_id,tokenId,amount,user_id);
 			
 			if(status === 201)
 			{

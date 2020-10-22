@@ -61,6 +61,9 @@ const styles = StyleSheet.create({
 	comment:{
 		flex:1
 	},
+	icon:{
+		marginRight:5
+	},
 	button:{
 		marginHorizontal:13
 	}

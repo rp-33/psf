@@ -103,7 +103,7 @@ const Signup = ({navigation})=>{
 							/>
 							<FieldInput
    								formikProps = {formikProps}
-								placeholder="Repetir ontraseña"
+								placeholder="Repetir contraseña"
 								type = "repeatPassword"									
 								secureTextEntry						
 							/>

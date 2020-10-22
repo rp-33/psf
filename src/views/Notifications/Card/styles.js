@@ -27,10 +27,14 @@ const styles = StyleSheet.create({
 	},
 	title:{
 		fontWeight:'bold',
-		marginTop:5
+		marginTop:5,
+		textTransform:'capitalize'
 	},
 	message:{
 		color:'#c7c7c7'
+	},
+	ctnRight:{
+		marginLeft:10
 	}
 })
 

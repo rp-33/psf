@@ -13,20 +13,21 @@ import Loading from '../../components/LoadingMore';
 const Comments =({navigation,route})=>{
 
 	const user = useSelector(state => state.user);
-	const id = route.params;
+	const {_id,user_id} = route.params;
 	const dispatch = useDispatch();
 	const [comments,setComments] = useState([]);
-	const [loading,setLoading] = useState(true);
+	const [loading,setLoading] = useState(false);
 	const [nodata,setNodata] = useState(false);
 
 	useEffect(()=>{
-		findComments(id,comments.length);
+		findComments(_id,comments.length);
 	},[])
 
-	const findComments = async(id,page)=>{
+	const findComments = async(_id,page)=>{
 		try
 		{
-			let {status,data} = await apiFindComments(id,page);
+			setLoading(true);
+			let {status,data} = await apiFindComments(_id,page);
 			if(status===200)
 			{
 				if(data.length===0) return setNodata(true);
@@ -53,7 +54,7 @@ const Comments =({navigation,route})=>{
 		try
 		{
 			dispatch(actionSetLoading(true));
-			let { status, data } = await apiCreateComment(id,text);
+			let { status, data } = await apiCreateComment(_id,text,user_id);
 			if(status === 201)
 			{
 				dispatch(actionSetToast({visible:true,title:data.message}));
@@ -86,7 +87,7 @@ const Comments =({navigation,route})=>{
 	}
 
 	const handleLoadMore = ()=>{
-		if(!nodata) findComments(id,comments.length);	
+		if(!nodata) findComments(_id,comments.length);	
 	}
 
 	return(

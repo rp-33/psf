@@ -10,9 +10,11 @@ import Icon from 'react-native-vector-icons/EvilIcons';
 import {color} from '../../../theme';
 import PropTypes from 'prop-types';
 import styles from './styles';
+import Avatar from '../../../components/Avatar';
 
 const Card = ({item})=>{
 
+	console.log(item)
 	const iconName = (type)=>{
 		switch (type) {
 			case 'crowdfunding':
@@ -44,16 +46,17 @@ const Card = ({item})=>{
 	<TouchableNativeFeedback>
 		<View style={styles.ctn}>
 			<View style={styles.ctnAvatar}>
-				<Image 
-					source ={{uri:'https://d500.epimg.net/cincodias/imagenes/2019/06/13/lifestyle/1560459860_259425_1560461372_noticia_normal.jpg'}}
-					style={styles.avatar}
+				<Avatar
+					avatar = {item.other_user.avatar}
+					sex = {item.other_user.sex}
+					size = {50}
 				/>
-				<View>
-					<Text style={styles.title}>{item.displayName}</Text>
-					<Text style={styles.message}>{item.message}</Text>
+				<View style={styles.ctnRight}>
+					<Text style={styles.title}>{item.other_user.userName}</Text>
+					<Text style={styles.message}>{item.text}</Text>
 				</View>
 			</View>
-			<View style={{marginRight:20}}>
+			<View>
 				<Icon 
 					name={iconName(item.type)} 
 					color={iconColor(item.type)}

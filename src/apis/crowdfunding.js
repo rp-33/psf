@@ -52,26 +52,40 @@ export const apiFindProjects = (page)=>{
 	.catch((err)=>{return err.response})
 }
 
-export const apiFindComments = (_id,page)=>{
+export const apiFindProject = (_id)=>{
 	return axios({
 		method:'get',
+		url:`${server}/api/v1/project/findProject`,
 		params : {
-			_id
+			_id : _id
 		},
-		url:`${server}/api/v1/project/findComments/${page}`,
 		headers:{'Authorization': "bearer " + userDb.get().token}
 	})
 	.then((response)=>{return response})
 	.catch((err)=>{return err.response})
 }
 
-export const apiCreateComment = (_id,text)=>{
+export const apiFindComments = (_id,page)=>{
+	return axios({
+		method:'get',
+		url:`${server}/api/v1/project/findComments/${page}`,
+		params : {
+			_id
+		},
+		headers:{'Authorization': "bearer " + userDb.get().token}
+	})
+	.then((response)=>{return response})
+	.catch((err)=>{return err.response})
+}
+
+export const apiCreateComment = (_id,text,user_notification)=>{
 	return axios({
 		method:'put',
 		url:`${server}/api/v1/project/createComment`,
 		data : {
 			_id,
-			text
+			text,
+			user_notification
 		},
 		headers:{'Authorization': "bearer " + userDb.get().token}
 	})
@@ -105,14 +119,15 @@ export const apiDislike = (_id)=>{
 	.catch((err)=>{return err.response})
 }
 
-export const apiContribute = (_id,tokenStripe,amount)=>{
+export const apiContribute = (_id,tokenStripe,amount,user_notification)=>{
 	return axios({
 		method:'put',
 		url:`${server}/api/v1/project/contribute`,
 		data : {
 			_id,
 			tokenStripe,
-			amount
+			amount,
+			user_notification
 		},
 		headers:{'Authorization': "bearer " + userDb.get().token}
 	})

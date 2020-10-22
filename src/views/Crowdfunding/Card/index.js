@@ -40,7 +40,7 @@ const Card = ({user,item,handleNavigation,handleLike,handleDislike})=>{
 				<Text style={styles.title}>{item.name}</Text>
 				<View>
 					<Text>{item.description}</Text>
-					<TouchableOpacity onPress = {()=>handleNavigation('InformationProject',item)}>
+					<TouchableOpacity onPress = {()=>handleNavigation('InformationProject',{_id:item._id})}>
 						<Text style={{color:color.primary,fontWeight:'bold'}}>Ver mas...</Text>
 					</TouchableOpacity>
 				</View>
@@ -50,18 +50,18 @@ const Card = ({user,item,handleNavigation,handleLike,handleDislike})=>{
 					<Icon 
                 		name="chart" 
                 		size={27} color="black"
-                		style={{marginRight:5}}
+                		style={styles.icon}
             		/>
 					<Text>{(item.total_donations/item.amount)*100}%</Text>
 				</TouchableOpacity>
 				<TouchableOpacity 
-					onPress = {()=>handleNavigation('Comments',item._id)}
+					onPress = {()=>handleNavigation('Comments',{_id:item._id,user_id:item.user._id})}
 					style={[styles.childBottom,styles.like]}
 				>
 					<Icon 
                 		name="comment" 
                 		size={27} color="black"
-                		style={{marginRight:5}}
+                		style={styles.icon}
             		/>
 					<Text>{item.number_comments}</Text>
 				</TouchableOpacity>
@@ -73,17 +73,19 @@ const Card = ({user,item,handleNavigation,handleLike,handleDislike})=>{
                 		name="heart" 
                 		size={27} 
                 		color={(like!=-1) ? 'red' : 'black'}
-                		style={{marginRight:5}}
+                		style={styles.icon}
             		/>
 					<Text>{item.likes.length}</Text>
 				</TouchableOpacity>
 			</View>
-			<View style={styles.button}>
+			{(item.user._id != user) &&
+				<View style={styles.button}>
 				<Button 
 					title="Contribuir"
-					onPress= {()=>handleNavigation('Contribute',item._id)}
+					onPress= {()=>handleNavigation('Contribute',{_id:item._id,user_id:item.user._id})}
 				/>
-			</View>
+				</View>
+			}
 		</View>
 	)
 }
