@@ -1,13 +1,16 @@
 import React,{useState,useEffect} from 'react';
 import {View} from 'react-native';
 import {Container} from 'native-base';
+import {useSelector} from 'react-redux';
 import MapView,{Marker} from 'react-native-maps';
 import styles from './styles';
 import Head from './Head';
+import MyMarker from './MyMarker';
 import {geolocation} from '../../Hooks/';
 
 const Map = ({navigation})=>{
 
+    const user = useSelector(state => state.user);
     const coords = geolocation();
 
 	return(
@@ -27,14 +30,10 @@ const Map = ({navigation})=>{
                         longitudeDelta: 0.0421,
                     }}
                     >
-                        <Marker
-                            title="Yo"
-                            coordinate={{
-                                latitude: coords.latitude,
-                                longitude: coords.longitude,
-                                latitudeDelta: 0.0922,
-                                longitudeDelta: 0.0421,
-                            }}
+                        <MyMarker
+                            user = {user}
+                            latitude = {coords.latitude}
+                            longitude = {coords.longitude}
                         />
                         <Marker
                             image={require('../../assets/images/point-trabajo.png')}

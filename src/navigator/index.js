@@ -27,6 +27,7 @@ import Comments from '../views/Comments';
 import Contribute from '../views/Contribute';
 import ThankMessage from '../views/ThankMessage';
 import Staticts from '../views/Staticts';
+import Suggestions from '../views/Suggestions'
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -206,6 +207,10 @@ const ProfileScreen = ()=>{
       <Stack.Screen
         name="EditPhone"
         component={EditPhone}
+      />
+      <Stack.Screen
+        name="Suggestions"
+        component={Suggestions}
       />
     </Stack.Navigator>
   )

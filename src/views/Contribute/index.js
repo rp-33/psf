@@ -82,7 +82,7 @@ const Contribute = ({navigation,route})=>{
 			/>
 			<View style={styles.ctn}>
 				<Image 
-					source ={require('../../assets/images/ayudar.png')} 
+					source ={require('../../assets/images/ayuda-unidos.png')} 
 					style = {styles.img}
 				/>  
 				<Formik

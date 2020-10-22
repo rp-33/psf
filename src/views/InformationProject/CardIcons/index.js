@@ -6,11 +6,14 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
-const CardIcons  = ({amount,comments,likes,donations})=>{
+const CardIcons  = ({amount,comments,donations,handleShare})=>{
 	return(
 		<View style={styles.ctn}>
-			<TouchableOpacity style={[styles.childBottom,styles.ctnProgress]}>
+			<TouchableOpacity 
+				style={styles.ctnIcon}
+			>
 				<Icon 
                		name="chart" 
                		size={27} 
@@ -19,23 +22,30 @@ const CardIcons  = ({amount,comments,likes,donations})=>{
             	/>
 				<Text>{donations/amount*100}%</Text>
 			</TouchableOpacity>
-			<TouchableOpacity style={[styles.childBottom,styles.like]}>
+			<TouchableOpacity 
+				style={styles.ctnIcon}
+				handleNavigation = {()=>handleNavigation()}
+			>
 				<Icon 
                		name="comment" 
                		size={27} 
                		color="black"
                		style={styles.icon}
             	/>
-				<Text>{comments.length}</Text>
+				<Text>{comments}</Text>
 			</TouchableOpacity>
-			<TouchableOpacity style={[styles.childBottom,styles.comment]}>
+			<TouchableOpacity 
+				style={styles.ctnIcon}
+				onPress = {()=>handleShare()}
+			>
+				<View style={styles.share}>
 				<Icon 
-               		name="heart" 
+               		name="share-google" 
                		size={27} 
                		color="black"
                		style={styles.icon}
             	/>
-				<Text>{likes.length}</Text>
+            	</View>
 			</TouchableOpacity>
 		</View>
 	)

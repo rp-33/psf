@@ -89,6 +89,13 @@ const MyProfile = ({navigation})=>{
 				</View>
 				<View style={styles.ctnButton}>
 					<ButtonCard 
+						image = "sugerencias"
+						text = "Cuentanos tus sugerencias"
+						onPress = {()=>handleNavigation('Suggestions')}
+					/>
+				</View>
+				<View style={styles.ctnButton}>
+					<ButtonCard 
 						image = "contrato"
 						text = "Terminos y condiciones"
 						onPress = {()=>console.log('onPress')}

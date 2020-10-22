@@ -86,5 +86,9 @@ export const contributeSchema = Yup.object().shape({
         .required('Campo requerido')
         .positive()
         .integer()
+});
 
+export const suggestionsSchema = Yup.object().shape({
+    text :  Yup.string()
+        .required('Campo requerido')
 });

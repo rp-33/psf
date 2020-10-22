@@ -76,3 +76,16 @@ export const apiEditPhone = (countryCode,phone)=>{
 	.then((response)=>{return response})
 	.catch((err)=>{return err.response})
 }
+
+export const apiSuggestions = (text)=>{
+	return axios({
+		method:'post',
+		url:`${server}/api/v1/user/suggestion`,
+		data : {
+			text
+		},
+		headers:{'Authorization': "bearer " + userDb.get().token}
+	})
+	.then((response)=>{return response})
+	.catch((err)=>{return err.response})
+}

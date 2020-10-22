@@ -63,7 +63,7 @@ const Card = ({user,item,handleNavigation,handleLike,handleDislike})=>{
                 		size={27} color="black"
                 		style={{marginRight:5}}
             		/>
-					<Text>{item.comments.length}</Text>
+					<Text>{item.number_comments}</Text>
 				</TouchableOpacity>
 				<TouchableOpacity 
 					style={[styles.childBottom,styles.comment]}

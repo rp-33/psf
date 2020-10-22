@@ -29,6 +29,8 @@ const ButtonCard = ({image,text,onPress})=>{
         		return (require('../../assets/images/logout.png'));
         	case 'camera':
         		return (require('../../assets/images/camera.png'));
+        	case 'sugerencias':
+        		return (require('../../assets/images/sugerencias.png'));
         	default:
             	return (require('../../assets/images/logo.png'));
         }

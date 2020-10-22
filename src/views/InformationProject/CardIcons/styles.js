@@ -1,26 +1,28 @@
 import {StyleSheet} from 'react-native';
+import {color} from '../../../theme'
 
 const styles = StyleSheet.create({
 	ctn:{
 		flexDirection:'row',
 		marginVertical:10,
+		justifyContent:'space-between',
+		paddingHorizontal:20
 	},
-	childBottom:{
+	ctnIcon:{
 		justifyContent:'center',
 		alignItems:'center',
-		flexDirection:'row'
-	},
-	like:{
-		flex:1
-	},
-	ctnProgress:{
-		flex:1
-	},
-	comment:{
-		flex:1
+		flexDirection:'row',
 	},
 	icon : {
 		marginRight:5
+	},
+	share:{
+		width:30,
+		height:30,
+		justifyContent:'center',
+		alignItems:'center',
+		backgroundColor:color.secondary,
+		borderRadius:15
 	}
 })
 

@@ -24,7 +24,6 @@ const StepThree = ({route,navigation})=>{
 	const handleImages = images=>gallery(setImage,true);
 
 	const setImage = images=>{
-		console.log(images)
 		setPhotos([...photos,...images])
 	}
 	
