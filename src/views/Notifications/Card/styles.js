@@ -35,6 +35,10 @@ const styles = StyleSheet.create({
 	},
 	ctnRight:{
 		marginLeft:10
+	},
+	icon:{
+		width:25,
+		height:25
 	}
 })
 

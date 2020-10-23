@@ -12,38 +12,34 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 import Avatar from '../../../components/Avatar';
 
-const Card = ({item})=>{
+const Card = ({item,handleNavigation})=>{
 
-	console.log(item)
-	const iconName = (type)=>{
+	const url= (type)=>{
 		switch (type) {
-			case 'crowdfunding':
-				return 'trophy';
-			case 'like':
-				return 'heart'
+			case 'comment':
+				return (require('../../../assets/images/comentario.png'));
 			case 'donation':
-				return 'credit-card'
+				return (require('../../../assets/images/donacion.png'));
 			default:
-				return 'comment'
+				return (require('../../../assets/images/logo.png'));
 		}
 	}
 
-	const iconColor = (type)=>{
-		switch (type) {
-			case 'crowdfunding':
-				return color.secondary;
-			case 'like':
-				return '#ff1744'
-			case 'donation':
-				return '#009688'
-			default:
-				return color.primary
+	const handleSelect = (type)=>{
+		if(type === 'comment')
+		{
+			handleNavigation('Comments',{_id:item.ref_id,user_id:item.my_user});
+		}
+		else if(type === 'donation')
+		{
+			handleNavigation('InformationProject',{_id:item.ref_id});
 		}
 	}
-
 
 	return(
-	<TouchableNativeFeedback>
+	<TouchableNativeFeedback
+		onPress = {()=>handleSelect(item.type)}
+	>
 		<View style={styles.ctn}>
 			<View style={styles.ctnAvatar}>
 				<Avatar
@@ -57,10 +53,9 @@ const Card = ({item})=>{
 				</View>
 			</View>
 			<View>
-				<Icon 
-					name={iconName(item.type)} 
-					color={iconColor(item.type)}
-					size={25}
+				<Image 
+			 		style = {styles.icon}
+			 		source ={url(item.type)} 
 				/>
 			</View>
 		</View>

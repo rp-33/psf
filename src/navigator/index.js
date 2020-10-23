@@ -174,6 +174,31 @@ const MapScreen = ()=>{
   )
 }
 
+const NotificationScreen = ()=>{
+  return(
+    <Stack.Navigator
+      initialRouteName="Notifications"
+      screenOptions={{ 
+        headerShown: false,
+        gestureEnabled: false,
+      }}
+    >
+      <Stack.Screen
+        name="Notifications"
+        component={Notifications}
+      />
+      <Stack.Screen
+        name="Comments"
+        component={Comments}
+      />
+      <Stack.Screen
+        name="InformationProject"
+        component={InformationProject}
+      />
+    </Stack.Navigator>
+  )
+}
+
 
 const ProfileScreen = ()=>{
   return(
@@ -245,7 +270,7 @@ const DashboardScreen = ()=>{
         />
         <Tab.Screen
           name="Notifications"
-          component={Notifications}
+          component={NotificationScreen}
           options={{
             tabBarIcon: ({ color }) => (
               <Icon name="bell" color={color} size={26} />

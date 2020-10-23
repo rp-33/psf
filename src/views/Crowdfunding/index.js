@@ -23,21 +23,30 @@ const Crowdfunding = ({navigation})=>{
 	const dispatch = useDispatch();
 	const [projects,setProjects] = useState([]);
 	const [loading,setLoading] = useState(false);
+	const [refreshing,setRefreshing] = useState(false);
 	const [nodata,setNodata] = useState(false);
 
 	useEffect(()=>{
-		_findProjects(projects.length);
+		_findProjects(projects.length,'loading');
 	},[])
 
-	const _findProjects = async(page)=>{
+	const _findProjects = async(page,action)=>{
 		try
 		{
-			setLoading(true)
+			if(action === 'refreshing')
+			{
+				setRefreshing(true)
+			}
+			else
+			{
+				setLoading(true)
+			}
+		
 			let {status,data} = await apiFindProjects(page);
 			if(status==200)
 			{
 				if(data.length===0) return setNodata(true);
-				setProjects([...projects,...data]);
+				setProjects(action === 'refreshing' ? data : [...projects,...data]);
 			}
 			else
 			{
@@ -51,13 +60,24 @@ const Crowdfunding = ({navigation})=>{
 		}
 		finally
 		{
-			setLoading(false)
+			if(action === 'refreshing')
+			{
+				setRefreshing(false)
+			}
+			else
+			{
+				setLoading(false)
+			}
 		}
 	}
 
 	const handleLoadMore = ()=>{
-		if(!nodata) _findProjects(projects.length);
-		
+		if(!nodata) _findProjects(projects.length);		
+	}
+
+	const handleRefresh = ()=>{
+		setNodata(false);
+		_findProjects(0,'refreshing');	
 	}
 
 	const handleLike = async({_id})=>{
@@ -92,7 +112,6 @@ const Crowdfunding = ({navigation})=>{
 		}
 	}
 
-
 	return(
 		<Container>
 			<Head />
@@ -110,6 +129,8 @@ const Crowdfunding = ({navigation})=>{
           		onEndReachedThreshold={0.01}
           		initialNumToRender={20}
           		style = {styles.ctnList}
+          		refreshing = {refreshing}
+                onRefresh ={handleRefresh}
           		ListFooterComponent = {
           			<Loading
           				loading = {loading}

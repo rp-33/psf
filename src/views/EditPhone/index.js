@@ -85,7 +85,7 @@ const EditPhone = ({navigation})=>{
 								handleModal	= {handleModal}					
 							/>
 							<Button
-								title = "Entrar"
+								title = "Guardar"
 								onPress={formikProps.handleSubmit} 
           					/>
           				</Form>

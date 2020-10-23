@@ -18,21 +18,29 @@ const Notifications = ({navigation})=>{
     const dispatch = useDispatch();
     const [notifications,setNotifications] = useState([]);
     const [loading,setLoading] = useState(false);
+    const [refreshing,setRefreshing] = useState(false);
     const [nodata,setNodata] = useState(false);
 
     useEffect(()=>{
-        findNotifications(notifications.length);
+        findNotifications(notifications.length,'loading');
     },[]);
 
-    const findNotifications = async(page)=>{
+    const findNotifications = async(page,action)=>{
         try
         {
-            setLoading(true);
+            if(action === 'refreshing')
+            {
+                setRefreshing(true)
+            }
+            else
+            {
+                setLoading(true)
+            }
             let {status,data} = await apiFindNotification(page);
             if(status===200)
             {
                 if(data.length===0) return setNodata(true);
-                setNotifications([...notifications,...data]);
+                setNotifications(action === 'refreshing' ? data : [...notifications,...data]);
             }
             else
             {
@@ -46,7 +54,14 @@ const Notifications = ({navigation})=>{
         }
         finally
         {
-            setLoading(false);
+            if(action === 'refreshing')
+            {
+                setRefreshing(false)
+            }
+            else
+            {
+                setLoading(false)
+            }
         }
 
     }
@@ -55,6 +70,10 @@ const Notifications = ({navigation})=>{
         if(!nodata) findNotifications(notifications.length);  
     }
 
+    const handleRefresh = ()=>{
+        setNodata(false);
+        findNotifications(0,'refreshing');  
+    }
 
 	return(
 		<Container>
@@ -63,6 +82,8 @@ const Notifications = ({navigation})=>{
                 data = {notifications}
                 keyExtractor={(item, index) => index.toString()}
                 onEndReached={nodata ? null : handleLoadMore}
+                refreshing = {refreshing}
+                onRefresh ={handleRefresh}
                 onEndReachedThreshold={0.01}
                 initialNumToRender={20}
                 ListFooterComponent = {
@@ -75,6 +96,7 @@ const Notifications = ({navigation})=>{
                     <Card
  						key = {index}
  						item = {item}
+                        handleNavigation = {(root,params)=>navigation.push(root,params)}
                     />
                 )}
             />
