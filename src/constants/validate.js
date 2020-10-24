@@ -82,13 +82,18 @@ export const phoneSchema = Yup.object().shape({
 });
 
 export const contributeSchema = Yup.object().shape({
-    amount :  Yup.number()
+    amount : Yup.number()
         .required('Campo requerido')
         .positive()
         .integer()
 });
 
 export const suggestionsSchema = Yup.object().shape({
-    text :  Yup.string()
+    text : Yup.string()
         .required('Campo requerido')
+});
+
+export const emailSchema = Yup.object().shape({
+    email: Yup.string()
+        .email('Correo  invalido')
 });

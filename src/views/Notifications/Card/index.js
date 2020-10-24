@@ -66,6 +66,4 @@ const Card = ({item,handleNavigation})=>{
 Card.propTypes = {
 }
 
-
-
 export default Card;

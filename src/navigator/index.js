@@ -27,11 +27,12 @@ import Comments from '../views/Comments';
 import Contribute from '../views/Contribute';
 import ThankMessage from '../views/ThankMessage';
 import Staticts from '../views/Staticts';
-import Suggestions from '../views/Suggestions'
+import Suggestions from '../views/Suggestions';
+import RecoverPassword from '../views/RecoverPassword';
+import NewPassword from '../views/NewPassword';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
-
 
 const HomeScreen = () => {
   return (
@@ -53,6 +54,14 @@ const HomeScreen = () => {
       <Stack.Screen
         name="Signup"
         component={Signup}
+      />
+      <Stack.Screen
+        name="RecoverPassword"
+        component={RecoverPassword}
+      />
+       <Stack.Screen
+        name="NewPassword"
+        component={NewPassword}
       />
     </Stack.Navigator>
   );

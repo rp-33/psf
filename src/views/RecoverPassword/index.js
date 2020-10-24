@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-	View,
-	TouchableOpacity,
-	Text
-} from 'react-native';
+import {View} from 'react-native';
 import {
 	Container,
 	Form
@@ -13,27 +9,25 @@ import {Formik} from 'formik';
 import Head from '../../components/Head';
 import Button from '../../components/Button';
 import FieldInput from '../../components/FieldInput';
-import { signInSchema } from '../../constants/validate';
-import styles from './styles';
-import { apiLogin } from '../../apis/auth';
+import { emailSchema } from '../../constants/validate';
 import {actionSetToast} from '../../actions/toast';
 import {actionSetLoading} from '../../actions/loading';
-import {actionSetAuth} from '../../actions/user';
+import { apiRecoverPassword } from '../../apis/profile';
+import styles from './styles';
 
-const Login = ({navigation})=>{
+const RecoverPassword = ({navigator})=>{
 
 	const dispatch = useDispatch();
 
-	const handleLogin = async(values, actions)=>{
+	const handleSubmit = async(values, actions)=>{
 		try
 		{
 			dispatch(actionSetLoading(true));
-			let {userName,email,sex,password} = values;
-			let { status, data } = await apiLogin(email,password);
-			if(status === 200)
+			let {email} = values;
+			let { status, data } = await apiRecoverPassword(email);
+			if(status === 201)
 			{
-				dispatch(actionSetAuth(data));
-				navigation.navigate('Dashboard');
+
 			}
 			else
 			{
@@ -52,18 +46,17 @@ const Login = ({navigation})=>{
 
 	return(
 		<Container>
-			<Head
-				title = "Iniciar session"
-				handleBack = {()=>navigation.goBack()}
+			<Head 
+				title = "Recuperar contraseña"
+				handleBack = {()=>navigator.goBack()}
 			/>
 			<View style={styles.ctnForm}>
 				<Formik
     				initialValues={{ 
-    					email: '',
-    					password : ''
+    					email: ''
     				}}
-    				validationSchema = {signInSchema}
-    				onSubmit={handleLogin}
+    				validationSchema = {emailSchema}
+    				onSubmit={handleSubmit}
   				>
     			{formikProps => (
     				<Form style={styles.form}>
@@ -72,28 +65,16 @@ const Login = ({navigation})=>{
 							placeholder="Correo electronico"
 							type = "email"						
 						/>
-						<FieldInput
-   							formikProps = {formikProps}
-							placeholder="Contraseña"
-							type = "password"									
-							secureTextEntry						
-						/>
 						<Button
-							title = "Entrar"
+							title = "Enviar"
 							onPress={formikProps.handleSubmit} 
           				/>
           			</Form>
     			)}
   				</Formik>
-  				<View style={styles.ctnRecover}>
-  					<TouchableOpacity onPress = {()=>navigation.push('RecoverPassword')}>
-            			<Text style={styles.textRecover}>Recuperar contraseña</Text>
-         	 		</TouchableOpacity>
-         	 	</View>
   			</View>
-
 		</Container>
 	)
 }
 
-export default Login;
+export default RecoverPassword;
