@@ -6,16 +6,16 @@ import {
 } from 'native-base';
 import {useDispatch} from 'react-redux';
 import {Formik} from 'formik';
-import Head from '../../components/Head';
-import Button from '../../components/Button';
-import FieldInput from '../../components/FieldInput';
-import { emailSchema } from '../../constants/validate';
-import {actionSetToast} from '../../actions/toast';
-import {actionSetLoading} from '../../actions/loading';
-import { apiRecoverPassword } from '../../apis/profile';
+import Head from '../../../components/Head';
+import Button from '../../../components/Button';
+import FieldInput from '../../../components/FieldInput';
+import { emailSchema } from '../../../constants/validate';
+import {actionSetToast} from '../../../actions/toast';
+import {actionSetLoading} from '../../../actions/loading';
+import { apiSendcode } from '../../../apis/password';
 import styles from './styles';
 
-const RecoverPassword = ({navigator})=>{
+const RecoverPassword = ({navigation})=>{
 
 	const dispatch = useDispatch();
 
@@ -24,10 +24,10 @@ const RecoverPassword = ({navigator})=>{
 		{
 			dispatch(actionSetLoading(true));
 			let {email} = values;
-			let { status, data } = await apiRecoverPassword(email);
+			let { status, data } = await apiSendcode(email);
 			if(status === 201)
 			{
-
+				navigation.push('SendPassword',{token:data.token,email:email});
 			}
 			else
 			{
@@ -36,6 +36,7 @@ const RecoverPassword = ({navigator})=>{
 		}
 		catch(err)
 		{
+			console.log(err)
 			dispatch(actionSetToast({visible:true,title:'Error en el servidor'}))	
 		}
 		finally
@@ -48,7 +49,7 @@ const RecoverPassword = ({navigator})=>{
 		<Container>
 			<Head 
 				title = "Recuperar contraseña"
-				handleBack = {()=>navigator.goBack()}
+				handleBack = {()=>navigation.goBack()}
 			/>
 			<View style={styles.ctnForm}>
 				<Formik

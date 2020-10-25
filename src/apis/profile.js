@@ -50,29 +50,19 @@ export const apiEditProfession = (ci,profession,experience,description)=>{
 }
 
 
-export const apiEditPassword = (password,token)=>{
+export const apiEditPassword = (password)=>{
 	return axios({
 		method:'put',
 		url:`${server}/api/v1/user/edit/password`,
 		data : {
 			password
 		},
-		headers:{'Authorization': "bearer " + token ? token : userDb.get().token}
+		headers:{'Authorization': "bearer " + userDb.get().token}
 	})
 	.then((response)=>{return response})
 	.catch((err)=>{return err.response})
 }
 
-export const apiRecoverPassword = (email)=>{
-	return axios({
-		method:'post',
-		url:`${server}/api/v1/user/recoverPassword`,
-		data : {
-			email
-		}})
-	.then((response)=>{return response})
-	.catch((err)=>{return err.response})
-}
 
 export const apiEditPhone = (countryCode,phone)=>{
 	return axios({

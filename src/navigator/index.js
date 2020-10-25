@@ -28,11 +28,37 @@ import Contribute from '../views/Contribute';
 import ThankMessage from '../views/ThankMessage';
 import Staticts from '../views/Staticts';
 import Suggestions from '../views/Suggestions';
-import RecoverPassword from '../views/RecoverPassword';
-import NewPassword from '../views/NewPassword';
+import RecoverPassword from '../views/Password/RecoverPassword';
+import SendPassword from '../views/Password/SendPassword';
+import NewPassword from '../views/Password/NewPassword';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
+
+const PasswordScreen = ()=>{
+   return (
+    <Stack.Navigator
+      initialRouteName="RecoverPassword"
+      screenOptions={{ 
+        headerShown: false,
+        gestureEnabled: false,
+      }}
+    >
+      <Stack.Screen
+        name="RecoverPassword"
+        component={RecoverPassword}
+      />
+      <Stack.Screen
+        name="SendPassword"
+        component={SendPassword}
+      />
+       <Stack.Screen
+        name="NewPassword"
+        component={NewPassword}
+      />
+    </Stack.Navigator>
+  );
+}
 
 const HomeScreen = () => {
   return (
@@ -57,11 +83,7 @@ const HomeScreen = () => {
       />
       <Stack.Screen
         name="RecoverPassword"
-        component={RecoverPassword}
-      />
-       <Stack.Screen
-        name="NewPassword"
-        component={NewPassword}
+        component={PasswordScreen}
       />
     </Stack.Navigator>
   );

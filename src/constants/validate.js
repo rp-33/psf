@@ -97,3 +97,9 @@ export const emailSchema = Yup.object().shape({
     email: Yup.string()
         .email('Correo  invalido')
 });
+
+export const codeSchema = Yup.object().shape({
+    code : Yup.string()
+        .required('Campo requerido')
+});
+
