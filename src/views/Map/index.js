@@ -6,22 +6,32 @@ import MapView,{Marker} from 'react-native-maps';
 import styles from './styles';
 import Head from './Head';
 import MyMarker from './MyMarker';
-import {geolocation} from '../../Hooks/';
+import {geolocation} from '../../Hooks';
+import ButtonFloat from './ButtonFloat';
+import ModalEmojis from './ModalEmojis';
+
 
 const Map = ({navigation})=>{
 
     const user = useSelector(state => state.user);
     const coords = geolocation();
+    const [open, setOpen] = useState(false);
+    const [emotion,setEmotion] = useState('');
+    const [modalEmoji,setModalEmoji] = useState(false);
+
+    const onStateChange = () =>setOpen(!open);
+
+    const handleEmotion = emotion=>setEmotion(emotion);
 
 	return(
 		<Container>
             <Head 
                 handleNavigation = {()=>navigation.push('WorkConfiguration')}
                 handleSos = {()=>console.log('modal')}
-            />
-			<View style={styles.ctn}>
-                {(coords.latitude && coords.longitude) && 
-                <MapView
+            />          
+            <View style={styles.ctn}>
+                {(coords.latitude && coords.longitude) &&
+                    <MapView
                     style = {styles.ctn}
                     initialRegion={{
                         latitude: coords.latitude,
@@ -34,6 +44,7 @@ const Map = ({navigation})=>{
                             user = {user}
                             latitude = {coords.latitude}
                             longitude = {coords.longitude}
+                            emotion = {emotion}
                         />
                         <Marker
                             image={require('../../assets/images/point-trabajo.png')}
@@ -77,8 +88,22 @@ const Map = ({navigation})=>{
                         />
                         
                     </MapView>
-                    }
-                </View>
+                }
+                <ButtonFloat 
+                    open = {open}
+                    onStateChange = {onStateChange}
+                    handleModal = {()=>setModalEmoji(!modalEmoji)}
+                    handleNavigation = {()=>navigation.push('Chat')}
+                />
+            </View>
+            
+            {modalEmoji &&
+                <ModalEmojis 
+                    open = {modalEmoji}
+                    handleModal = {()=>setModalEmoji(!modalEmoji)}
+                    handleSelect = {handleEmotion}
+                />
+            }
 		</Container>
 	)
 }

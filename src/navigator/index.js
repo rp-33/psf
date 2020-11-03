@@ -31,6 +31,7 @@ import Suggestions from '../views/Suggestions';
 import RecoverPassword from '../views/Password/RecoverPassword';
 import SendPassword from '../views/Password/SendPassword';
 import NewPassword from '../views/Password/NewPassword';
+import Chat from '../views/Chat';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -201,6 +202,10 @@ const MapScreen = ()=>{
         name="EditProfession"
         component={EditProfessionScreen}
       />
+      <Stack.Screen
+        name="Chat"
+        component={Chat}
+      />
     </Stack.Navigator>
   )
 }
@@ -229,7 +234,6 @@ const NotificationScreen = ()=>{
     </Stack.Navigator>
   )
 }
-
 
 const ProfileScreen = ()=>{
   return(
