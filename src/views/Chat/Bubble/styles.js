@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
 		paddingHorizontal:10,
 		paddingVertical:5,
 		width:'auto',
-		backgroundColor:'white',
+		backgroundColor:'#D7E7E9',
 		borderWidth:1,
-		borderColor:'white',
+		borderColor:'#D7E7E9',
 		borderBottomRightRadius:20,
 		borderBottomLeftRadius:20,
 		borderTopRightRadius:20,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 		textTransform:'capitalize'
 	},
 	date:{
-		color:color.primary,
+		color:'black',
 		marginTop:5,
 		textAlign:'right'
 	}

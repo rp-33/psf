@@ -1,5 +1,8 @@
 import React,{useState,useEffect} from 'react';
-import {FlatList} from 'react-native';
+import {
+	Image,
+	FlatList
+} from 'react-native';
 import {Container} from 'native-base';
 import {useDispatch,useSelector} from 'react-redux';
 import Head from './Head';
@@ -43,7 +46,7 @@ const Chat =({navigation,route})=>{
 	}
 
 	const handleSend = async(text)=>{
-		tryvi
+		try
 		{
 			let chat = [{
 				user: {
@@ -83,6 +86,10 @@ const Chat =({navigation,route})=>{
 				title = {user.country}
 				handleBack = {()=>navigation.goBack()}
 			/>
+			<Image 
+				style={{flex:1,position:'absolute',zIndex:-1}} 
+				source={require('../../assets/images/chat-background.jpg')} 
+			/>
 			<FlatList
                 data = {chats}
                 keyExtractor={(item, index) => index.toString()}
@@ -90,7 +97,6 @@ const Chat =({navigation,route})=>{
           		onEndReachedThreshold={0.01}
           		initialNumToRender={20}
           		inverted = {true}
-          		style={{flex:1,backgroundColor:'#f1f1f1'}}
           		ListFooterComponent = {
           			<Loading
           				loading = {loading}

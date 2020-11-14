@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
 		justifyContent:'center',
 		alignItems:'center',
 		flexDirection:'row',
-		backgroundColor:'#f1f1f1'
 	},
 	btn:{
 		width:50,

@@ -9,7 +9,7 @@ import MyMarker from './MyMarker';
 import {geolocation} from '../../Hooks';
 import ButtonFloat from './ButtonFloat';
 import ModalEmojis from './ModalEmojis';
-
+import ModalSos from './ModalSos';
 
 const Map = ({navigation})=>{
 
@@ -18,16 +18,31 @@ const Map = ({navigation})=>{
     const [open, setOpen] = useState(false);
     const [emotion,setEmotion] = useState('');
     const [modalEmoji,setModalEmoji] = useState(false);
+    const [modalSos,setModalSos] = useState(false);
+    const [activeSos,setActivesos] = useState(false);
 
     const onStateChange = () =>setOpen(!open);
 
     const handleEmotion = emotion=>setEmotion(emotion);
 
+    const handleSos = ()=>{
+        setModalSos(!modalSos);
+        setEmotion('sos');
+        setActivesos(true);
+    }
+
+    const handleCancelSos = ()=>{
+        setActivesos(false);
+        setEmotion('');
+    }
+
 	return(
 		<Container>
             <Head 
                 handleNavigation = {()=>navigation.push('WorkConfiguration')}
-                handleSos = {()=>console.log('modal')}
+                handleSos = {()=>setModalSos(!modalSos)}
+                sos = {activeSos}
+                handleCancelSos = {handleCancelSos}
             />          
             <View style={styles.ctn}>
                 {(coords.latitude && coords.longitude) &&
@@ -89,12 +104,16 @@ const Map = ({navigation})=>{
                         
                     </MapView>
                 }
+
+                {!activeSos &&
                 <ButtonFloat 
                     open = {open}
                     onStateChange = {onStateChange}
                     handleModal = {()=>setModalEmoji(!modalEmoji)}
                     handleNavigation = {()=>navigation.push('Chat')}
                 />
+                }
+
             </View>
             
             {modalEmoji &&
@@ -102,6 +121,13 @@ const Map = ({navigation})=>{
                     open = {modalEmoji}
                     handleModal = {()=>setModalEmoji(!modalEmoji)}
                     handleSelect = {handleEmotion}
+                />
+            }
+            {modalSos &&
+                <ModalSos
+                    open = {modalSos}
+                    handleModal = {()=>setModalSos(!modalSos)}
+                    handleSos = {handleSos}
                 />
             }
 		</Container>

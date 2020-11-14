@@ -24,7 +24,9 @@ const Emoji = ({emotion,width,height})=>{
         		return (require('../../../assets/emojis/genial.png'));
         	case 'conmocionado':
         		return (require('../../../assets/emojis/conmocionado.png'));
-        	default:
+        	case 'sos':
+                return (require('../../../assets/emojis/sos.png'));
+            default:
             	return (require('../../../assets/emojis/genial.png'));
         }
 	}
